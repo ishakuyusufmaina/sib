@@ -187,7 +187,7 @@ footer small {
           onLoginSuccess(userCredential.user);
         })
         .catch((error) => {
-          alert("Login failed: " + error.message);
+          alert("Login failed: " + error.code);
         });
     }
   </script>
