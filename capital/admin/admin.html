@@ -108,8 +108,8 @@
 </head>
 <body>
   <header>
-    <span id="sess">session/term</span>
-    <p id="date"></p>
+    <span id="sess">session/term not initialized</span>
+    <div id="date"></div>
   </header>
 
   <h1>Admin</h1>
@@ -200,29 +200,18 @@
       const analytics = getAnalytics(app);
       const auth = getAuth(app);
     const db = getFirestore(app);
-
+const schoolId= "capital";
   const terms = ["first term", "second term", "third term"];
   
    var sessions = [];
   
-  let sessionsRef = doc(db, "school", "sessions");
+  let sessionsRef = doc(db, schoolId, "sessions");
   let sessionsDoc = await getDoc(sessionsRef);
     if (sessionsDoc.exists()){
     let sessions =  sessionsDoc.data().sessions;
      sessions= sessions.sort((a, b)=>b.no - a.no);
     sess.innerHTML = sessions[0].year + ", " +terms[sessions[0].term]
-      /*sessions.forEach((session, i)=>{
-        let year = session.year;
-    //  let opt = document.createElement("option");
-      sess.innerHTML = year + ", " + terms[session.term];
-      sessionSelect.appendChild(opt);
-      opt.setAttribute("data-year", year);
-      opt.setAttribute("data-term", session.term);
-        if (i==0)
-        opt.selected = true;
-    });*/
-      //sessionSelect.firstChild.nextElementSibling.selected = true;
-  }
+        }
   
   
   let d = new Date();
@@ -256,5 +245,4 @@
     }
   </script>
 </body>
-  </html>
-  
+</html>
